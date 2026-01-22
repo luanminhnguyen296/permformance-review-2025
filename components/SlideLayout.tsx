@@ -15,7 +15,7 @@ import { CONTRIBUTION_DATA, COLORS } from '../constants';
 
 const BrancherXLogo: React.FC<{ className?: string }> = ({ className = "h-12" }) => (
   <div className={`flex items-center gap-3 ${className}`}>
-    <img src="/static/images/logo-brancherx.png" alt="BrancherX" className="h-auto w-64 object-contain" />
+    <img src="static/images/logo-brancherx.png" alt="BrancherX" className="h-auto w-64 object-contain" />
   </div>
 );
 
@@ -23,7 +23,7 @@ const BrancherXLogo: React.FC<{ className?: string }> = ({ className = "h-12" })
 const AdminXMockup = () => (
   <div className="w-full h-full bg-white rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex">
     <img 
-      src="/static/images/apps/adminx_1.png" 
+      src="static/images/apps/adminx_1.png" 
       alt="AdminX Dashboard" 
       className="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-[1.02] cursor-pointer" 
     />
@@ -34,7 +34,7 @@ const AdminXMockup = () => (
 const PingXMockup = () => (
   <div className="w-full h-full bg-white rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex">
     <img 
-        src="/static/images/apps/pingx.png" 
+        src="static/images/apps/pingx.png" 
         alt="PingX Conversations" 
         className="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-[1.05] cursor-pointer" 
       />
@@ -46,7 +46,7 @@ const PageXMockup = () => (
   <div className="w-full h-full bg-[#f1f5f9] rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
     <div className="flex-1 p-4 flex flex-col gap-4 overflow-y-auto">
       <img 
-        src="/static/images/apps/pagex.png" 
+        src="static/images/apps/pagex.png" 
         alt="PageX Content" 
         className="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-[1.02] cursor-pointer" 
       />
@@ -59,7 +59,7 @@ const BuzzXXMockup = () => (
   <div className="w-full h-full bg-[#f1f5f9] rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
     <div className="flex-1 p-4 flex flex-col gap-4 overflow-y-auto">
       <img 
-        src="/static/images/apps/buzzx.png" 
+        src="static/images/apps/buzzx.png" 
         alt="BuzzX Comments" 
         className="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-[1.02] cursor-pointer" 
       />
@@ -71,7 +71,7 @@ const BuzzXXMockup = () => (
 const TradingDeskMockup = () => (
   <div className="w-full h-full bg-white rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
     <img 
-      src="/static/images/apps/tradingdesk.png" 
+      src="static/images/apps/tradingdesk.png" 
       alt="Trading Desk Campaigns" 
       className="w-full h-full object-cover rounded transition-transform duration-500 hover:scale-[1.02] cursor-pointer" 
     />
@@ -243,7 +243,7 @@ const SlideLayout: React.FC<SlideLayoutProps> = ({ slide }) => {
                 { label: '2024: Foundation', color: 'bg-slate-700', icon: <Settings /> },
                 { label: '2025: Scale-up', color: 'bg-sky-700', icon: <TrendingUp /> },
                 { label: '2026: AI Strategic', color: 'bg-indigo-700', icon: <Brain /> },
-                { label: 'Future: Tech Lead', color: 'bg-[#004683]', icon: <Target /> }
+                { label: 'Future: Project Lead', color: 'bg-[#004683]', icon: <Target /> }
               ].map((step, i) => (
                 <div key={i} className="flex flex-col items-center w-1/4 z-10">
                   <div className={`w-16 h-16 rounded-full ${step.color} flex items-center justify-center border-4 border-slate-900 shadow-xl mb-4 transition-transform hover:scale-110 cursor-pointer`}>
