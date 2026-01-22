@@ -25,11 +25,11 @@ export const SLIDES: SlideContent[] = [
   {
     id: 1,
     title: 'PERFORMANCE REVIEW 2025',
-    subtitle: 'Henry – Full-stack Developer',
+    subtitle: 'Nguyễn Minh Luân – Full-stack Developer',
     type: 'cover',
     content: [
-      'Nhóm Sản phẩm Công nghệ',
-      'Hệ sinh thái: Trading Desk, PingX, PageX, BuzzX, AdminX',
+      'Nhóm Sản phẩm Công nghệ(Tech Team)',
+      'Sản phẩm tham gia: Trading Desk, PingX, PageX, BuzzX & AdminX',
       'Thời gian: 2024 – 2025'
     ]
   },

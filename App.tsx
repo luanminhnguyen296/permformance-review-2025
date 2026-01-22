@@ -6,6 +6,7 @@ import {
   ChevronLeft, ChevronRight, Maximize, Play, Pause, 
   Layout as LayoutIcon, HelpCircle
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const App: React.FC = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
@@ -199,6 +200,31 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
+
+       {/* Persistent Footer / Branding */}
+       <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+        className="absolute bottom-0 left-0 w-full p-12 md:p-16 flex justify-between items-end z-20 pointer-events-none"
+      >
+        <div className="flex items-center gap-4 opacity-80 pointer-events-auto">
+          <div className="relative w-10 h-10">
+            <div className="absolute top-0 left-0 w-8 h-10 bg-[#91D0EE] rounded-sm transform skew-x-[-12deg] opacity-80"></div>
+            <div className="absolute top-0 left-2 w-8 h-10 bg-[#004683] rounded-sm transform skew-x-[-12deg]"></div>
+          </div>
+          <div className="text-sm">
+            <p className="font-black text-[#91D0EE] tracking-tighter text-base">BRANCHER.X</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Performance Review • Tech Team 2025</p>
+          </div>
+        </div>
+        <div className="flex flex-col items-end gap-1 pointer-events-auto">
+           <p className="text-sm font-bold text-sky-400">Full-stack Developer</p>
+           <p className="text-[10px] opacity-40 font-mono tracking-widest uppercase">
+            Nguyễn Minh Luân
+          </p>
+        </div>
+      </motion.div>
     </div>
   );
 };
