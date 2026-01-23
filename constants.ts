@@ -126,17 +126,7 @@ export const SLIDES: SlideContent[] = [
       'Trọng tâm vào core system & nền tảng dài hạn.'
     ]
   },
-  {
-    id: 11,
-    title: 'Tác động đến kinh doanh',
-    type: 'grid',
-    content: [
-      'Scale khách hàng nhanh chóng.',
-      'Ra mắt sản phẩm mới (Time-to-market) ngắn.',
-      'Giảm chi phí vận hành thủ công.',
-      'Sẵn sàng hạ tầng cho kỷ nguyên AI.'
-    ]
-  },
+
   {
     id: 12,
     title: 'Điểm mạnh nổi bật',

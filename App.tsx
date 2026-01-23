@@ -143,7 +143,7 @@ const App: React.FC = () => {
 
       {/* Thumbnail Sidebar */}
       {showThumbnails && (
-        <div className="absolute right-0 top-0 bottom-0 w-80 bg-slate-950/98 backdrop-blur-3xl border-l border-slate-800 z-[100] p-8 overflow-y-auto animate-in slide-in-from-right duration-300">
+        <div className="absolute right-0 top-0 bottom-0 w-80 bg-slate-950/98 backdrop-blur-3xl border-l border-slate-800 z-[100] p-8 overflow-y-auto animate-in slide-in-from-right duration-300" style={{ backgroundColor: '#24257480' }}>
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-2">
                <div className="w-2 h-6 bg-sky-500 rounded-full"></div>

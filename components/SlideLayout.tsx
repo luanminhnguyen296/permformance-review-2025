@@ -539,21 +539,36 @@ const SlideLayout: React.FC<SlideLayoutProps> = ({ slide }) => {
         {slide.type === 'cover' ? (
           <div className="flex flex-col h-full justify-center space-y-10 mt-10">
             <BrancherXLogo className="h-20 mb-4" />
-            <motion.div variants={containerVariants} className="!my-auto flex-grow justify-center flex flex-col">
-               <motion.h1 variants={itemVariants} className="mb-10 text-4xl md:text-7xl lg:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-100 to-sky-400 leading-none" style={{opacity: 1,transform: 'none',letterSpacing: '-1px'}}>
-                {slide.title}
-              </motion.h1>
-              <motion.h4 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-sky-400 opacity-90 mt-2">
-                {slide.subtitle}
-              </motion.h4>
-              <motion.div variants={containerVariants} className="flex flex-wrap gap-4 mt-6 mb-12">
-                {slide.content.map((line, i) => (
-                  <motion.div key={i} variants={itemVariants} className="px-6 py-3 rounded-xl bg-[#004683]/40 border border-sky-900/50 backdrop-blur-md text-sky-100 font-semibold text-lg shadow-lg">
-                    {line}
-                  </motion.div>
-                ))}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-12 !my-auto flex-grow w-full">
+              <motion.div variants={containerVariants} className="flex-grow justify-center flex flex-col">
+                 <motion.h1 variants={itemVariants} className="mb-10 text-4xl md:text-7xl lg:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-100 to-sky-400 leading-none" style={{opacity: 1,transform: 'none',letterSpacing: '-1px'}}>
+                  {slide.title}
+                </motion.h1>
+                <motion.h4 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-sky-400 opacity-90 mt-2">
+                  {slide.subtitle}
+                </motion.h4>
+                <motion.div variants={containerVariants} className="flex flex-wrap gap-4 mt-6 mb-12">
+                  {slide.content.map((line, i) => (
+                    <motion.div key={i} variants={itemVariants} className="px-6 py-3 rounded-xl bg-[#004683]/40 border border-sky-900/50 backdrop-blur-md text-sky-100 font-semibold text-lg shadow-lg">
+                      {line}
+                    </motion.div>
+                  ))}
+                </motion.div>
               </motion.div>
-            </motion.div>
+
+              <motion.div 
+                variants={itemVariants}
+                className="relative shrink-0 hidden md:block"
+              >
+                <div className="absolute inset-0 bg-sky-500/20 blur-[150px] rounded-full"></div>
+                <img 
+                  src="static/images/apps/avatar.png" 
+                  alt="Avatar" 
+                  style={{ transform: 'scaleX(-1)' }}
+                  className="relative w-96 h-96 lg:w-[520px] lg:h-[520px] object-cover rounded-full border-[12px] border-slate-800/50 shadow-[0_0_60px_rgba(56,189,248,0.4)]"
+                />
+              </motion.div>
+            </div>
           </div>
         ) : (
           <div className="flex items-center gap-6">
