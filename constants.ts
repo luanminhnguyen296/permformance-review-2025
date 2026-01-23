@@ -16,9 +16,9 @@ export const COLORS = {
 export const CONTRIBUTION_DATA: ContributionData[] = [
   { name: 'Trading Desk', value: 30, color: '#38bdf8' },
   { name: 'PingX', value: 15, color: '#6d28d9' },
-  { name: 'PageX', value: 30, color: '#22d3ee' },
+  { name: 'PageX', value: 30, color: '#f59e0b' },
   { name: 'BuzzX', value: 8, color: '#10b981' },
-  { name: 'AdminX', value: 75, color: '#004683' },
+  { name: 'AdminX', value: 75, color: '#ef4444' },
 ];
 
 export const SLIDES: SlideContent[] = [

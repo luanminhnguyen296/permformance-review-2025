@@ -132,6 +132,45 @@ const AppLogo: React.FC<{ type: string; size?: number; className?: string }> = (
   return <Rocket size={size} className={className} />;
 };
 
+const ContributionGauge = ({ value }: { value: number }) => {
+  const radius = 35;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (value / 100) * circumference;
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="flex items-center gap-6 mb-2 p-5 bg-slate-800/40 rounded-2xl border border-slate-700/50 backdrop-blur-sm"
+    >
+      <div className="relative w-24 h-24 flex items-center justify-center">
+         <svg className="w-full h-full transform -rotate-90">
+           <circle cx="48" cy="48" r={radius} stroke="#1e293b" strokeWidth="8" fill="transparent" />
+           <motion.circle 
+             cx="48" cy="48" r={radius} 
+             stroke="#38bdf8" 
+             strokeWidth="8" 
+             fill="transparent"
+             strokeDasharray={circumference}
+             initial={{ strokeDashoffset: circumference }}
+             animate={{ strokeDashoffset }}
+             transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+             strokeLinecap="round"
+           />
+         </svg>
+         <div className="absolute inset-0 flex flex-col items-center justify-center">
+           <span className="text-2xl font-black text-white">{value}%</span>
+         </div>
+      </div>
+      <div>
+         <div className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Impact Level</div>
+         <div className="text-xl text-sky-400 font-bold">Mức độ đóng góp</div>
+         <div className="text-sm text-slate-500 mt-1">Dựa trên khối lượng công việc & độ phức tạp</div>
+      </div>
+    </motion.div>
+  );
+};
+
 interface SlideLayoutProps {
   slide: SlideContent;
 }
@@ -159,24 +198,79 @@ const SlideLayout: React.FC<SlideLayoutProps> = ({ slide }) => {
       
       case 'chart':
         return (
-          <motion.div variants={itemVariants} className="w-full h-[400px] mt-8 bg-slate-900/50 p-6 rounded-2xl border border-slate-800">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={CONTRIBUTION_DATA}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                <XAxis dataKey="name" stroke="#94a3b8" />
-                <YAxis stroke="#94a3b8" />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
-                  itemStyle={{ color: '#f8fafc' }}
-                />
-                <Bar dataKey="value" radius={[4, 4, 0, 0]}>
-                  {CONTRIBUTION_DATA.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </motion.div>
+          <div className="w-full h-full flex flex-col justify-center mt-8">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+              {CONTRIBUTION_DATA.map((item, i) => {
+                const radius = 80;
+                const circumference = 2 * Math.PI * radius;
+                const strokeDashoffset = circumference - (item.value / 100) * circumference;
+                
+                return (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 + 0.5, duration: 0.5 }}
+                    className="flex flex-col items-center gap-6"
+                  >
+                    <div className="relative w-56 h-56 flex items-center justify-center group">
+                      {/* Background Glow */}
+                      <div className="absolute inset-0 bg-opacity-20 rounded-full blur-xl transition-all duration-500 group-hover:bg-opacity-40" style={{ backgroundColor: item.color + '40' }}></div>
+                      
+                      <svg className="w-full h-full transform -rotate-90 drop-shadow-2xl">
+                        {/* Track */}
+                        <circle 
+                          cx="112" cy="112" r={radius} 
+                          stroke="#1e293b" 
+                          strokeWidth="20" 
+                          fill="transparent" 
+                          className="opacity-50"
+                        />
+                        {/* Progress */}
+                        <motion.circle 
+                          cx="112" cy="112" r={radius} 
+                          stroke={item.color} 
+                          strokeWidth="20" 
+                          fill="transparent" 
+                          strokeDasharray={circumference}
+                          initial={{ strokeDashoffset: circumference }}
+                          animate={{ strokeDashoffset }}
+                          transition={{ duration: 1.5, ease: "easeOut", delay: i * 0.2 + 0.8 }}
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                      
+                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <motion.span 
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: i * 0.2 + 1.5, type: "spring" }}
+                          className="text-5xl font-black text-white tracking-tight"
+                        >
+                          {item.value}%
+                        </motion.span>
+                      </div>
+                    </div>
+                    
+                    <div className="text-center relative">
+                       <div className="absolute -inset-2 bg-slate-800/50 blur-md rounded-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                       <h3 className="text-xl font-bold text-slate-200 mb-2">{item.name}</h3>
+                       <div className="h-1.5 w-16 rounded-full mx-auto" style={{ backgroundColor: item.color }}></div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+            
+             <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.5 }}
+              className="text-center mt-12 text-slate-400 text-sm italic"
+            >
+              {/* * Dựa trên phân bổ thời gian & độ phức tạp kỹ thuật */}
+            </motion.div>
+          </div>
         );
 
       case 'ecosystem':
@@ -287,7 +381,7 @@ const SlideLayout: React.FC<SlideLayoutProps> = ({ slide }) => {
           if (title.includes('AdminX')) return <AdminXMockup />;
           return null;
         };
-
+        
         return (
           <div className="flex flex-col gap-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
