@@ -703,151 +703,197 @@ const ChallengeMockup = () => (
 
 // Mockup minh họa cho Vai trò & Giá trị cốt lõi (Slide 2)
 const CoreValuesMockup = () => {
+  const nodes = [
+    { icon: <Code2 size={24} />, x: -240, y: -160, label: 'Full-stack', color: 'text-sky-400', border: 'border-sky-500/30', delay: 0 },
+    { icon: <Shield size={24} />, x: 240, y: -160, label: 'Security', color: 'text-emerald-400', border: 'border-emerald-500/30', delay: 0.2 },
+    { icon: <Database size={24} />, x: -240, y: 160, label: 'Data', color: 'text-purple-400', border: 'border-purple-500/30', delay: 0.4 },
+    { icon: <Brain size={24} />, x: 240, y: 160, label: 'AI Ready', color: 'text-amber-400', border: 'border-amber-500/30', delay: 0.6 },
+  ];
+
   return (
-    <div className="w-full h-full flex items-center justify-center relative">
-      {/* Background Glows */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-20">
+    <div className="w-full h-full relative flex items-center justify-center overflow-visible">
+      {/* Background Decor */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none z-0">
         <motion.div 
-          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="w-64 h-64 bg-sky-500 rounded-full blur-[100px]"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="w-full h-full bg-sky-500 rounded-full blur-[120px]"
         />
       </div>
       
-      <div className="relative flex items-center justify-center w-full h-full">
+      {/* Connecting Lines */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible" viewBox="0 0 800 800">
+         <g transform="translate(400, 400)">
+            {nodes.map((node, i) => (
+               <motion.line
+                 key={i}
+                 x1="0" y1="0"
+                 x2={node.x} y2={node.y}
+                 stroke="#0ea5e9"
+                 strokeWidth="2"
+                 strokeDasharray="8,4"
+                 initial={{ pathLength: 0, opacity: 0 }}
+                 animate={{ pathLength: 1, opacity: 0.3 }}
+                 transition={{ delay: 0.8, duration: 1.5 }}
+               />
+            ))}
+         </g>
+      </svg>
+
+      {/* Centered Content Container */}
+      <div className="relative z-20 flex items-center justify-center w-full h-full">
         {/* Central Core */}
         <motion.div 
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="z-20 w-40 h-40 rounded-[2rem] bg-slate-900 border-2 border-sky-500/50 flex flex-col items-center justify-center shadow-[0_0_50px_rgba(14,165,233,0.2)]"
+          className="z-30 w-48 h-48 rounded-full bg-slate-900 border-2 border-sky-500/50 flex flex-col items-center justify-center shadow-[0_0_60px_rgba(14,165,233,0.3)] relative group shrink-0"
         >
-          <div className="p-3 bg-sky-500/10 rounded-2xl mb-2 text-sky-400">
-            <Cpu size={40} />
+           <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-[-8px] border-2 border-sky-500/20 rounded-full border-dashed"
+           />
+           <div className="p-4 bg-sky-500/10 rounded-full mb-2 text-sky-400 group-hover:bg-sky-500 group-hover:text-white transition-all duration-500">
+            <Cpu size={40} className="drop-shadow-lg font-bold" />
           </div>
-          <span className="text-[10px] font-black tracking-widest text-sky-300 uppercase">Tech Hub</span>
-          <span className="text-lg font-black text-white">HENRY</span>
+          <span className="text-[10px] font-black text-sky-300 uppercase tracking-[0.3em] mb-1">Tech Hub</span>
+          <span className="text-xl font-black text-white tracking-widest">HENRY</span>
         </motion.div>
 
-        {/* Outer Floating Icons */}
-        {[
-          { icon: <Code2 size={24} />, x: -260, y: -160, label: 'Full-stack', delay: 0 },
-          { icon: <Shield size={24} />, x: 260, y: -160, label: 'Security', delay: 0.2 },
-          { icon: <Database size={24} />, x: -260, y: 160, label: 'Data', delay: 0.4 },
-          { icon: <Brain size={24} />, x: 260, y: 160, label: 'AI Ready', delay: 0.6 },
-        ].map((item, i) => (
+        {/* Satellites */}
+        {nodes.map((item, i) => (
           <motion.div 
             key={i} 
-            initial={{ scale: 0, x: 0, y: 0 }}
-            animate={{ 
-              scale: 1, 
-              x: item.x, 
-              y: item.y,
-            }}
-            transition={{ 
-              type: "spring", stiffness: 200, damping: 20, delay: item.delay,
-            }}
-            className="absolute left-1/2 top-1/2 -ml-8 -mt-8 z-30 flex flex-col items-center"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1, x: item.x, y: item.y }}
+            transition={{ type: "spring", stiffness: 200, damping: 20, delay: item.delay }}
+            className="absolute z-20 flex items-center justify-center"
           >
             <motion.div 
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: item.delay }}
-              className="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-sky-400 shadow-xl backdrop-blur-md hover:border-sky-400 transition-colors"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+              className={`w-16 h-16 rounded-full bg-slate-900/40 border-2 ${item.border} flex items-center justify-center ${item.color} shadow-lg backdrop-blur-md group hover:border-sky-400 transition-colors pointer-events-none`}
             >
+              <div className="absolute inset-0 bg-current opacity-5 rounded-full"></div>
               {item.icon}
             </motion.div>
-            <span className="mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter bg-slate-900/80 px-2 py-0.5 rounded-full backdrop-blur-sm border border-slate-800">{item.label}</span>
+            <motion.div
+               animate={{ y: [0, -10, 0] }}
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }} 
+               className="absolute top-[calc(100%+12px)] pointer-events-none"
+            >
+                <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest bg-[#0f172a]/90 px-4 py-1.5 rounded-full border border-slate-700 shadow-xl whitespace-nowrap">
+                  {item.label}
+                </span>
+            </motion.div>
           </motion.div>
         ))}
 
-        {/* Connecting Orbital Rings */}
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute w-64 h-64 border border-sky-500/20 rounded-full border-dashed"
-        />
+        {/* Decoration Ring */}
         <motion.div 
           animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute w-80 h-80 border border-indigo-500/10 rounded-full"
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute w-[36rem] h-[36rem] border border-slate-700/30 rounded-full opacity-50 border-dotted pointer-events-none"
         />
       </div>
     </div>
   );
 };
-// Mockup minh họa cho Vai trò & Giá trị cốt lõi (Slide 2)
+// Mockup minh họa cho Phạm vi đóng góp tổng thể (Slide 4)
 const ContributionScopeMockup = () => {
+  const nodes = [
+    { icon: <Globe size={24} />, x: -240, y: -160, label: '5 Products', color: 'text-sky-400', border: 'border-sky-500/30', delay: 0 },
+    { icon: <Code2 size={24} />, x: 240, y: -160, label: 'FrontEnd - BackEnd', color: 'text-emerald-400', border: 'border-emerald-500/30', delay: 0.2 },
+    { icon: <Brain size={24} />, x: -240, y: 160, label: 'Core System', color: 'text-purple-400', border: 'border-purple-500/30', delay: 0.4 },
+    { icon: <Database size={24} />, x: 240, y: 160, label: 'Data Modeling', color: 'text-amber-400', border: 'border-amber-500/30', delay: 0.6 },
+  ];
+
   return (
-    <div className="w-full h-full flex items-center justify-center relative">
-      {/* Background Glows */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-20">
+    <div className="w-full h-full relative flex items-center justify-center overflow-visible">
+      {/* Background Decor */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none z-0">
         <motion.div 
-          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="w-64 h-64 bg-sky-500 rounded-full blur-[100px]"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="w-full h-full bg-sky-500 rounded-full blur-[120px]"
         />
       </div>
       
-      <div className="relative flex items-center justify-center w-full h-full">
+      {/* Connecting Lines */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible" viewBox="0 0 800 800">
+         <g transform="translate(400, 400)">
+            {nodes.map((node, i) => (
+               <motion.line
+                 key={i}
+                 x1="0" y1="0"
+                 x2={node.x} y2={node.y}
+                 stroke="#0ea5e9"
+                 strokeWidth="2"
+                 strokeDasharray="8,4"
+                 initial={{ pathLength: 0, opacity: 0 }}
+                 animate={{ pathLength: 1, opacity: 0.3 }}
+                 transition={{ delay: 0.8, duration: 1.5 }}
+               />
+            ))}
+         </g>
+      </svg>
+
+      {/* Centered Content Container */}
+      <div className="relative z-20 flex items-center justify-center w-full h-full">
         {/* Central Core */}
         <motion.div 
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="z-20 w-40 h-40 rounded-[2rem] bg-slate-900 border-2 border-sky-500/50 flex flex-col items-center justify-center shadow-[0_0_50px_rgba(14,165,233,0.2)]"
+          className="z-30 w-48 h-48 rounded-full bg-slate-900 border-2 border-sky-500/50 flex flex-col items-center justify-center shadow-[0_0_60px_rgba(14,165,233,0.3)] relative group shrink-0"
         >
-           <div className="p-3 bg-sky-500/10 rounded-xl mb-2 text-sky-400">
-            <Server size={32} className="group-hover:scale-110 transition-transform" />
+           <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-[-8px] border-2 border-sky-500/20 rounded-full border-dashed"
+           />
+           <div className="p-4 bg-sky-500/10 rounded-full mb-2 text-sky-400 group-hover:bg-sky-500 group-hover:text-white transition-all duration-500">
+            <Server size={40} className="drop-shadow-lg font-bold" />
           </div>
-          <span className="text-[10px] font-black text-sky-400 uppercase tracking-widest">CORE ARCH</span>
-          <div className="flex gap-1 mt-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></div>
-              <div className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse delay-150"></div>
-              <div className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse delay-300"></div>
-          </div>
+          <span className="text-[10px] font-black text-sky-300 uppercase tracking-[0.3em] mb-1">Architecture</span>
+          <span className="text-xl font-black text-white tracking-widest">CORE ARCH</span>
         </motion.div>
 
-        {/* Outer Floating Icons */}
-        {[
-          { icon: <Globe size={24} />, x: -260, y: -160, label: '5 Products', delay: 0 },
-          { icon: <Code2 size={24} />, x: 260, y: -160, label: 'FrontEnd - BackEnd', delay: 0.2 },
-          { icon: <Brain size={24} />, x: -260, y: 160, label: 'Core System', delay: 0.4 },
-          { icon: <Database size={24} />, x: 260, y: 160, label: 'Data Modeling', delay: 0.6 },
-        ].map((item, i) => (
+        {/* Satellites */}
+        {nodes.map((item, i) => (
           <motion.div 
             key={i} 
-            initial={{ scale: 0, x: 0, y: 0 }}
-            animate={{ 
-              scale: 1, 
-              x: item.x, 
-              y: item.y,
-            }}
-            transition={{ 
-              type: "spring", stiffness: 200, damping: 20, delay: item.delay,
-            }}
-            className="absolute left-1/2 top-1/2 -ml-8 -mt-8 z-30 flex flex-col items-center"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1, x: item.x, y: item.y }}
+            transition={{ type: "spring", stiffness: 200, damping: 20, delay: item.delay }}
+            className="absolute z-20 flex items-center justify-center"
           >
             <motion.div 
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: item.delay }}
-              className="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-sky-400 shadow-xl backdrop-blur-md hover:border-sky-400 transition-colors"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+              className={`w-16 h-16 rounded-full bg-slate-900/40 border-2 ${item.border} flex items-center justify-center ${item.color} shadow-lg backdrop-blur-md group hover:border-sky-400 transition-colors pointer-events-none`}
             >
+              <div className="absolute inset-0 bg-current opacity-5 rounded-full"></div>
               {item.icon}
             </motion.div>
-            <span className="mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter bg-slate-900/80 px-2 py-0.5 rounded-full backdrop-blur-sm border border-slate-800">{item.label}</span>
+            <motion.div
+               animate={{ y: [0, -10, 0] }}
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }} 
+               className="absolute top-[calc(100%+12px)] pointer-events-none"
+            >
+                <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest bg-[#0f172a]/90 px-4 py-1.5 rounded-full border border-slate-700 shadow-xl whitespace-nowrap">
+                  {item.label}
+                </span>
+            </motion.div>
           </motion.div>
         ))}
 
-        {/* Connecting Orbital Rings */}
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute w-64 h-64 border border-sky-500/20 rounded-full border-dashed"
-        />
+        {/* Decoration Ring */}
         <motion.div 
           animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute w-80 h-80 border border-indigo-500/10 rounded-full"
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute w-[36rem] h-[36rem] border border-slate-700/30 rounded-full opacity-50 border-dotted pointer-events-none"
         />
       </div>
     </div>
@@ -911,7 +957,7 @@ const BusinessImpactMockup = () => {
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: item.delay }}
-              className={`w-18 h-18 p-5 rounded-2xl bg-slate-900/90 border ${item.border} flex items-center justify-center ${item.color} shadow-2xl backdrop-blur-xl hover:scale-110 transition-transform cursor-default`}
+              className={`w-16 h-16 rounded-full bg-slate-900/40 border-2 ${item.border} flex items-center justify-center ${item.color} shadow-lg backdrop-blur-md hover:scale-110 transition-transform cursor-default`}
             >
               {item.icon}
             </motion.div>
@@ -920,7 +966,7 @@ const BusinessImpactMockup = () => {
                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: item.delay }} 
                className="mt-3"
             >
-                <span className="text-[11px] font-black text-slate-300 uppercase tracking-wide bg-slate-900/90 px-3 py-1 rounded-full border border-slate-700 shadow-lg">{item.label}</span>
+                <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest bg-[#0f172a]/90 px-4 py-1.5 rounded-full border border-slate-700 shadow-xl">{item.label}</span>
             </motion.div>
           </motion.div>
         ))}
@@ -1006,17 +1052,25 @@ const StrengthsMockup = () => {
               transition={{ delay: i * 0.1 + 0.5, type: "spring" }}
               className="absolute z-20 flex items-center justify-center"
             >
-               <div className={`w-18 h-18 rounded-2xl bg-slate-900 ${item.border} border-2 flex items-center justify-center ${item.color} shadow-2xl relative overflow-hidden group backdrop-blur-sm`}>
-                  <div className={`absolute inset-0 bg-current opacity-5 group-hover:opacity-20 transition-opacity`}></div>
+               <motion.div 
+                 animate={{ y: [0, -10, 0] }}
+                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+                 className={`w-16 h-16 rounded-full bg-slate-900/40 ${item.border} border-2 flex items-center justify-center ${item.color} shadow-lg backdrop-blur-md relative overflow-hidden group`}
+               >
+                  <div className={`absolute inset-0 bg-current opacity-5 group-hover:opacity-10 transition-opacity`}></div>
                   {item.icon}
-               </div>
+               </motion.div>
                
                {/* Label - Absolute to not shift icon center */}
-               <div className="absolute top-[calc(100%+12px)] flex flex-col items-center">
-                  <span className="px-4 py-1.5 bg-slate-900/90 rounded-full border border-slate-700 text-[11px] font-black text-slate-200 uppercase tracking-wide whitespace-nowrap shadow-xl">
+               <motion.div 
+                 animate={{ y: [0, -10, 0] }}
+                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+                 className="absolute top-[calc(100%+12px)] flex flex-col items-center"
+               >
+                  <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest bg-[#0f172a]/90 px-4 py-1.5 rounded-full border border-slate-700 shadow-xl whitespace-nowrap">
                     {item.label}
                   </span>
-               </div>
+               </motion.div>
             </motion.div>
          ))}
       </div>
@@ -1094,19 +1148,19 @@ const ConclusionMockup = () => {
             className="absolute z-20 flex items-center justify-center"
           >
             <motion.div 
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
-              className={`w-18 h-18 p-5 rounded-2xl bg-slate-900 border ${item.border} flex items-center justify-center ${item.color} shadow-2xl backdrop-blur-xl group hover:border-sky-400 transition-colors pointer-events-none`}
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+              className={`w-16 h-16 rounded-full bg-slate-900/40 border-2 ${item.border} flex items-center justify-center ${item.color} shadow-lg backdrop-blur-md group hover:border-sky-400 transition-colors pointer-events-none`}
             >
-              <div className="absolute inset-0 bg-current opacity-5 rounded-2xl"></div>
+              <div className="absolute inset-0 bg-current opacity-5 rounded-full"></div>
               {item.icon}
             </motion.div>
             <motion.div
-               animate={{ y: [0, -12, 0] }}
-               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }} 
+               animate={{ y: [0, -10, 0] }}
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }} 
                className="absolute top-[calc(100%+12px)] pointer-events-none"
             >
-                <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest bg-slate-900/90 px-4 py-1.5 rounded-full border border-slate-700 shadow-xl backdrop-blur-md whitespace-nowrap">
+                <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest bg-[#0f172a]/90 px-4 py-1.5 rounded-full border border-slate-700 shadow-xl whitespace-nowrap">
                   {item.label}
                 </span>
             </motion.div>

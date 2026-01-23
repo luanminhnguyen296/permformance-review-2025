@@ -177,5 +177,16 @@ export const SLIDES: SlideContent[] = [
       'R&D: Nghiên cứu & tích hợp các module AI vào nền tảng cốt lõi.',
       'Đề xuất: Đào tạo chuyên sâu về AI Marketing (MarTech) để nâng cao nghiệp vụ.'
     ]
+  },
+  {
+    id: 16,
+    title: 'THANK YOU',
+    subtitle: 'Q&A Session | Feedback & Discussion',
+    type: 'cover',
+    content: [
+      'Nguyễn Minh Luân – Full-stack Developer',
+      'Email: luan.nguyen@brancherx.com',
+      'BrancherX Tech Team 2025'
+    ]
   }
 ];
