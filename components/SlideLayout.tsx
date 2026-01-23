@@ -8,11 +8,11 @@ import {
 import { 
   Shield, Brain, Users, Layout, Rocket, Target, CheckCircle2,
   ChevronRight, ArrowRight, TrendingUp, Settings, MessageSquare, 
-  Bell, FileText, Globe, MousePointer2, Plus,  Zap, Scale, Layers,
-  Activity, Gauge, Workflow
+  Bell, FileText, Globe, MousePointer2, Plus,  Zap, Scale, Layers,Code2,Database,
+  Activity, Gauge, Workflow,Cpu,Server
 } from 'lucide-react';
 
-import { CONTRIBUTION_DATA, COLORS } from '../constants';
+import { CONTRIBUTION_DATA, COLORS, SLIDES } from '../constants';
 import { motion } from 'framer-motion';
 
 const containerVariants = {
@@ -59,30 +59,34 @@ const BrancherXLogo: React.FC<{ className?: string }> = ({ className = "h-12" })
 
 // Mockup cho AdminX - Phân quyền
 const AdminXMockup = () => (
-  <div className="w-full h-full bg-white rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex">
-    <img 
-      src="static/images/apps/adminx_1.png" 
-      alt="AdminX Dashboard" 
-      className="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-[1.02] cursor-pointer" 
-    />
+  <div className="w-full h-full bg-[#f1f5f9] rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
+    <div className="flex-1 p-1 flex flex-col gap-4 overflow-y-auto">
+        <img 
+        src="static/images/apps/adminx_1.png" 
+        alt="AdminX Dashboard" 
+        className="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-[1.02] cursor-pointer" 
+      />
+    </div>
   </div>
 );
 
 // Mockup cho PingX - Hội thoại
 const PingXMockup = () => (
-  <div className="w-full h-full bg-white rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex">
-    <img 
+  <div className="w-full h-full bg-[#f1f5f9] rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
+    <div className="flex-1 p-2 flex flex-col gap-4 overflow-y-auto">
+      <img 
         src="static/images/apps/pingx.png" 
         alt="PingX Conversations" 
-        className="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-[1.05] cursor-pointer" 
+        className="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-[1.02] cursor-pointer" 
       />
+    </div>
   </div>
 );
 
 // Mockup cho PageX - Content
 const PageXMockup = () => (
   <div className="w-full h-full bg-[#f1f5f9] rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
-    <div className="flex-1 p-4 flex flex-col gap-4 overflow-y-auto">
+    <div className="flex-1 p-2 flex flex-col gap-4 overflow-y-auto">
       <img 
         src="static/images/apps/pagex.png" 
         alt="PageX Content" 
@@ -95,7 +99,7 @@ const PageXMockup = () => (
 // Mockup cho BuzzXXMockup - Content
 const BuzzXXMockup = () => (
   <div className="w-full h-full bg-[#f1f5f9] rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
-    <div className="flex-1 p-4 flex flex-col gap-4 overflow-y-auto">
+    <div className="flex-1 p-2 flex flex-col gap-4 overflow-y-auto">
       <img 
         src="static/images/apps/buzzx.png" 
         alt="BuzzX Comments" 
@@ -108,11 +112,13 @@ const BuzzXXMockup = () => (
 // Mockup cho Trading Desk - Campaign
 const TradingDeskMockup = () => (
   <div className="w-full h-full bg-white rounded-xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
-    <img 
-      src="static/images/apps/tradingdesk.png" 
-      alt="Trading Desk Campaigns" 
-      className="w-full h-full object-cover rounded transition-transform duration-500 hover:scale-[1.02] cursor-pointer" 
-    />
+    <div className="flex-1 p-2 flex flex-col gap-4 overflow-y-auto">
+      <img 
+        src="static/images/apps/tradingdesk.png" 
+        alt="Trading Desk Campaigns" 
+        className="w-full h-full object-cover rounded transition-transform duration-500 hover:scale-[1.02] cursor-pointer" 
+      />
+    </div>  
   </div>
 );
 
@@ -176,10 +182,10 @@ const SlideLayout: React.FC<SlideLayoutProps> = ({ slide }) => {
       case 'ecosystem':
         const ecosystemItems = [
           { label: 'Trading Desk', type: 'trading', x: 50, y: 0 },
-          { label: 'PingX', type: 'ping', x: 80, y: 25 },
-          { label: 'PageX', type: 'page', x: 80, y: 75 },
+          { label: 'PingX', type: 'ping', x: 90, y: 25 },
+          { label: 'PageX', type: 'page', x: 90, y: 75 },
           { label: 'BuzzX', type: 'buzz', x: 50, y: 100 },
-          { label: 'AdminX', type: 'admin', x: 20, y: 50 },
+          { label: 'AdminX', type: 'admin', x: 10, y: 50 },
         ];
 
         return (
@@ -278,13 +284,14 @@ const SlideLayout: React.FC<SlideLayoutProps> = ({ slide }) => {
           if (title.includes('Page')) return <PageXMockup />;
           if (title.includes('Buzz')) return <BuzzXXMockup />; // Buzz uses similar feed style
           if (title.includes('Thách thức')) return <ChallengeMockup />;
+          if (title.includes('AdminX')) return <AdminXMockup />;
           return null;
         };
 
         return (
           <div className="flex flex-col gap-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-               <motion.div variants={containerVariants} className="space-y-6">
+               <motion.div variants={containerVariants} className="space-y-6 h-full flex flex-col justify-center">
                   <motion.div variants={itemVariants} className="glass-card p-6 rounded-2xl border-l-4 border-l-sky-500 group hover:bg-slate-800/60 transition-all shadow-xl">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="p-2 bg-sky-500/20 rounded-lg text-sky-400">
@@ -357,6 +364,28 @@ const SlideLayout: React.FC<SlideLayoutProps> = ({ slide }) => {
         );
 
       case 'grid':
+        if (slide.id === 2 || slide.id === 4) {
+          return (
+            <div className="flex flex-col md:flex-row gap-12 mt-12 items-center">
+              <div className="w-full md:w-1/2 grid grid-cols-1 gap-4">
+                {slide.content.map((item, i) => (
+                  <div key={i} className="glass-card p-6 rounded-2xl flex items-center gap-5 group hover:border-sky-500/50 transition-all">
+                    <div className="p-4 bg-sky-500/10 rounded-2xl text-sky-400 group-hover:bg-[#004683] group-hover:text-white transition-all">
+                      {i === 0 ? <Target size={24} /> : i === 1 ? <Rocket size={24} /> : i === 2 ? <Shield size={24} /> : <Brain size={24} />}
+                    </div>
+                    <div className="flex items-center h-full"> 
+                      <h4 className="text-lg font-bold text-white">{item.split(' - ')[0]}</h4>
+                      {/* <p className="text-slate-400 leading-relaxed text-sm">{item.split(' - ')[1] || item}</p> */}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="w-full md:w-1/2 aspect-square">
+              {slide.id === 2 ? <CoreValuesMockup /> : <ContributionScopeMockup />}
+              </div>
+            </div>
+          );
+        }
         return (
           <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {slide.content.map((item, i) => (
@@ -450,10 +479,29 @@ const SlideLayout: React.FC<SlideLayoutProps> = ({ slide }) => {
       </motion.div>
 
       {/* Slide Visuals */}
-      <div className="relative z-10 my-auto pb-12">
+      <div className="relative z-10 flex-1 flex flex-col justify-center min-h-0">
         {slide.type !== 'cover' && renderVisual()}
       </div>
 
+      {/* Slide Footer / Branding */}
+      <div className="invisible relative z-10 mt-auto flex justify-between items-end border-t border-slate-800/50 pt-8 shrink-0">
+        <div className="flex items-center gap-4 opacity-80">
+          <div className="relative w-10 h-10">
+            <div className="absolute top-0 left-0 w-8 h-10 bg-[#91D0EE] rounded-sm transform skew-x-[-12deg] opacity-80"></div>
+            <div className="absolute top-0 left-2 w-8 h-10 bg-[#004683] rounded-sm transform skew-x-[-12deg]"></div>
+          </div>
+          <div className="text-sm">
+            <p className="font-black text-[#91D0EE] tracking-tighter text-base">BRANCHER.X</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Henry Review • MarTech 2025</p>
+          </div>
+        </div>
+        <div className="flex flex-col items-end gap-1">
+           <p className="text-sm font-bold text-sky-400">Full-stack Developer</p>
+           <p className="text-[10px] opacity-40 font-mono tracking-widest uppercase">
+            Confidential Internal Review
+          </p>
+        </div>
+      </div>
 
 
       {/* Background Elements */}
@@ -555,5 +603,159 @@ const ChallengeMockup = () => (
     </div>
   </div>
 );
+
+// Mockup minh họa cho Vai trò & Giá trị cốt lõi (Slide 2)
+const CoreValuesMockup = () => {
+  return (
+    <div className="w-full h-full flex items-center justify-center relative">
+      {/* Background Glows */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-20">
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="w-64 h-64 bg-sky-500 rounded-full blur-[100px]"
+        />
+      </div>
+      
+      <div className="relative flex items-center justify-center w-full h-full">
+        {/* Central Core */}
+        <motion.div 
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          className="z-20 w-40 h-40 rounded-[2rem] bg-slate-900 border-2 border-sky-500/50 flex flex-col items-center justify-center shadow-[0_0_50px_rgba(14,165,233,0.2)]"
+        >
+          <div className="p-3 bg-sky-500/10 rounded-2xl mb-2 text-sky-400">
+            <Cpu size={40} />
+          </div>
+          <span className="text-[10px] font-black tracking-widest text-sky-300 uppercase">Tech Hub</span>
+          <span className="text-lg font-black text-white">HENRY</span>
+        </motion.div>
+
+        {/* Outer Floating Icons */}
+        {[
+          { icon: <Code2 size={24} />, x: -260, y: -160, label: 'Full-stack', delay: 0 },
+          { icon: <Shield size={24} />, x: 260, y: -160, label: 'Security', delay: 0.2 },
+          { icon: <Database size={24} />, x: -260, y: 160, label: 'Data', delay: 0.4 },
+          { icon: <Brain size={24} />, x: 260, y: 160, label: 'AI Ready', delay: 0.6 },
+        ].map((item, i) => (
+          <motion.div 
+            key={i} 
+            initial={{ scale: 0, x: 0, y: 0 }}
+            animate={{ 
+              scale: 1, 
+              x: item.x, 
+              y: item.y,
+            }}
+            transition={{ 
+              type: "spring", stiffness: 200, damping: 20, delay: item.delay,
+            }}
+            className="absolute left-1/2 top-1/2 -ml-8 -mt-8 z-30 flex flex-col items-center"
+          >
+            <motion.div 
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: item.delay }}
+              className="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-sky-400 shadow-xl backdrop-blur-md hover:border-sky-400 transition-colors"
+            >
+              {item.icon}
+            </motion.div>
+            <span className="mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter bg-slate-900/80 px-2 py-0.5 rounded-full backdrop-blur-sm border border-slate-800">{item.label}</span>
+          </motion.div>
+        ))}
+
+        {/* Connecting Orbital Rings */}
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute w-64 h-64 border border-sky-500/20 rounded-full border-dashed"
+        />
+        <motion.div 
+          animate={{ rotate: -360 }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute w-80 h-80 border border-indigo-500/10 rounded-full"
+        />
+      </div>
+    </div>
+  );
+};
+// Mockup minh họa cho Vai trò & Giá trị cốt lõi (Slide 2)
+const ContributionScopeMockup = () => {
+  return (
+    <div className="w-full h-full flex items-center justify-center relative">
+      {/* Background Glows */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-20">
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="w-64 h-64 bg-sky-500 rounded-full blur-[100px]"
+        />
+      </div>
+      
+      <div className="relative flex items-center justify-center w-full h-full">
+        {/* Central Core */}
+        <motion.div 
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          className="z-20 w-40 h-40 rounded-[2rem] bg-slate-900 border-2 border-sky-500/50 flex flex-col items-center justify-center shadow-[0_0_50px_rgba(14,165,233,0.2)]"
+        >
+           <div className="p-3 bg-sky-500/10 rounded-xl mb-2 text-sky-400">
+            <Server size={32} className="group-hover:scale-110 transition-transform" />
+          </div>
+          <span className="text-[10px] font-black text-sky-400 uppercase tracking-widest">CORE ARCH</span>
+          <div className="flex gap-1 mt-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse delay-150"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse delay-300"></div>
+          </div>
+        </motion.div>
+
+        {/* Outer Floating Icons */}
+        {[
+          { icon: <Globe size={24} />, x: -260, y: -160, label: '5 Products', delay: 0 },
+          { icon: <Code2 size={24} />, x: 260, y: -160, label: 'FrontEnd - BackEnd', delay: 0.2 },
+          { icon: <Brain size={24} />, x: -260, y: 160, label: 'Core System', delay: 0.4 },
+          { icon: <Database size={24} />, x: 260, y: 160, label: 'Data Modeling', delay: 0.6 },
+        ].map((item, i) => (
+          <motion.div 
+            key={i} 
+            initial={{ scale: 0, x: 0, y: 0 }}
+            animate={{ 
+              scale: 1, 
+              x: item.x, 
+              y: item.y,
+            }}
+            transition={{ 
+              type: "spring", stiffness: 200, damping: 20, delay: item.delay,
+            }}
+            className="absolute left-1/2 top-1/2 -ml-8 -mt-8 z-30 flex flex-col items-center"
+          >
+            <motion.div 
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: item.delay }}
+              className="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-sky-400 shadow-xl backdrop-blur-md hover:border-sky-400 transition-colors"
+            >
+              {item.icon}
+            </motion.div>
+            <span className="mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter bg-slate-900/80 px-2 py-0.5 rounded-full backdrop-blur-sm border border-slate-800">{item.label}</span>
+          </motion.div>
+        ))}
+
+        {/* Connecting Orbital Rings */}
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute w-64 h-64 border border-sky-500/20 rounded-full border-dashed"
+        />
+        <motion.div 
+          animate={{ rotate: -360 }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute w-80 h-80 border border-indigo-500/10 rounded-full"
+        />
+      </div>
+    </div>
+  );
+};
+
 
 export default SlideLayout;

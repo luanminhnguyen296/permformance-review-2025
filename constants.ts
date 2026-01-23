@@ -38,15 +38,15 @@ export const SLIDES: SlideContent[] = [
     title: 'Vai trò & Giá trị cốt lõi',
     type: 'grid',
     content: [
-      'Full-stack Developer tham gia xây dựng sản phẩm chiến lược nội bộ.',
-      'Chủ động công nghệ - Xây nền tảng kỹ thuật vững chắc.',
-      'Giảm phụ thuộc bên thứ 3 - Tối ưu hóa chi phí & kiểm soát.',
-      'Sẵn sàng mở rộng AI & Automation cho tương lai.'
+      'Full-stack Developer: Tham gia phát triển sản phẩm chiến lược & dự án khách hàng.',
+      'Technical Execution: Đảm bảo chất lượng code, hiệu suất & tiến độ bàn giao.',
+      'Agency Adaptability: Linh hoạt thích ứng công nghệ theo yêu cầu đa dạng của Client.',
+      'Road to Senior: Nâng cao tư duy hệ thống & giải pháp kỹ thuật chuyên sâu.'
     ]
   },
   {
     id: 3,
-    title: 'Tổng quan hệ sinh thái sản phẩm',
+    title: 'Sản phẩm tham gia phát triển',
     type: 'ecosystem',
     content: [
       'Trading Desk – Quản lý & tối ưu quảng cáo',
@@ -72,16 +72,16 @@ export const SLIDES: SlideContent[] = [
     title: 'Trading Desk (30%)',
     type: 'comparison',
     content: [
-      'Hiện tại: Setup & theo dõi quảng cáo tập trung, giảm rủi ro BM nội bộ.',
-      'Tầm nhìn: AI Ads Optimization Platform - Tự động tạo & kiểm soát ngân sách.'
+      'Hiện tại: Xây dựng tool setup quảng cáo tập trung Facebook, Transparent Ads setup, report Tiktok và Google ads.',
+      `Tầm nhìn: Tích hợp setup quảng cáo TikTok & Google Ads, kết hợp AI đề xuất tự động tối ưu chiến dịch và ngân sách.`
     ]
   },
   {
     id: 6,
-    title: 'PingX (15%)',
+    title: 'PingX (18%)',
     type: 'comparison',
     content: [
-      'Hiện tại: Quản lý hội thoại đa nền tảng, hỗ trợ bán hàng & CSKH.',
+      'Hiện tại: Quản lý Tag, tích hợp pages vào ui chat, tích hợp phân quyền version 1',
       'Tầm nhìn: AI Chatbot thông minh - Tự động tư vấn ngữ cảnh & chốt đơn.'
     ]
   },
@@ -90,7 +90,7 @@ export const SLIDES: SlideContent[] = [
     title: 'PageX (30%)',
     type: 'comparison',
     content: [
-      'Hiện tại: Quản lý & đăng bài đa kênh tập trung, theo dõi content.',
+      'Hiện tại: Sync post từ Facebook, Tiktok, đăng bài tự động theo lịch. Tích hợp lịch đăng bài',
       'Tầm nhìn: AI Content Engine - Tự động tạo nội dung & media hiệu suất cao.'
     ]
   },
@@ -99,18 +99,22 @@ export const SLIDES: SlideContent[] = [
     title: 'BuzzX (8%)',
     type: 'comparison',
     content: [
-      'Hiện tại: Quản lý comment tập trung, giảm rủi ro khủng hoảng.',
+      'Hiện tại: Tích hợp sync post Tiktok, Facebook. Thêm filter và chỉ số insight cho post, report page, phân quyền version 2',
       'Tầm nhìn: Tự động hóa comment - Trả lời thông minh & ẩn tiêu cực.'
     ]
   },
   {
     id: 9,
     title: 'AdminX (75%) – Nền tảng cốt lõi',
-    type: 'hub-spoke',
+    type: 'comparison',
+    // type: 'hub-spoke',
     content: [
-      'Core quản trị cho toàn bộ hệ sinh thái.',
-      'Quản lý: User, Permission, Client, Billing.',
-      'Giúp công ty scale nhanh, kiểm soát chặt, mở rộng dễ.'
+      // 'Hiện tại: Quản lý: User, Permission, Client, Role.',
+      'Hiện tại: Hoàn thành các modules chính Auth, User, Permission, Client, Role.',
+      'Tầm nhìn: Bổ sung thêm các modules Payment, Invoice, Package Prices, Dashboard Admin, Tích hợp AI để phân tích',
+      // 'Core quản trị system cho toàn bộ hệ sinh thái.',
+      // 'Quản lý: User, Permission, Client, Role.',
+      // 'Giúp công ty scale nhanh, kiểm soát chặt, mở rộng dễ.'
     ]
   },
   {
@@ -137,10 +141,10 @@ export const SLIDES: SlideContent[] = [
     title: 'Điểm mạnh nổi bật',
     type: 'grid',
     content: [
-      'Tư duy product & business nhạy bén.',
-      'Hiểu sâu nghiệp vụ ads & commerce.',
-      'Xây dựng hệ thống scalable.',
-      'Định hướng AI-First mindset.'
+      'Mid-level Solid: Code clean, tuân thủ pattern, dễ bảo trì.',
+      'Agency Mindset: Thích nghi nhanh, multitasking tốt, "can-do" attitude.',
+      'Technical Depth: Hiểu sâu về luồng dữ liệu & logic nghiệp vụ.',
+      'Senior-ready: Chủ động giải quyết vấn đề (Problem Solving).'
     ]
   },
   {
@@ -148,8 +152,8 @@ export const SLIDES: SlideContent[] = [
     title: 'Thách thức & bài học',
     type: 'comparison',
     content: [
-      'Thách thức: Hệ sinh thái phức tạp & thị trường biến động nhanh.',
-      'Bài học: Cân bằng giữa Speed (tốc độ) & Sustainability (bền vững).'
+      'Thách thức: Business thay đổi liên tục, deadline gấp (đặc thù Agency).',
+      'Bài học: Quản lý thời gian, prioritize task & giao tiếp team hiệu quả.'
     ]
   },
   {
@@ -157,9 +161,9 @@ export const SLIDES: SlideContent[] = [
     title: 'Định hướng đóng góp 2026',
     type: 'roadmap',
     content: [
-      'Key Developer cho Core Infrastructure.',
-      'Product Roadmap & AI Strategy contributor.',
-      'Mục tiêu: Senior / Tech Lead position.'
+      'Tech Proficiency: Master Tech stack, tối ưu sâu performance.',
+      'Mentorship: Hướng dẫn Junior, tham gia Code Review tích cực.',
+      'Mục tiêu: Đạt level Senior Full-stack Developer.'
     ]
   },
   {
@@ -167,9 +171,10 @@ export const SLIDES: SlideContent[] = [
     title: 'Kết luận & đề xuất',
     type: 'standard',
     content: [
-      '2025: Xây nền tảng & sản phẩm chiến lược.',
-      '2026: Đẩy mạnh AI & thương mại hóa.',
-      'Đề xuất: Lộ trình phát triển Senior rõ ràng.'
+      '2025: Đảm bảo chất lượng sản phẩm & cam kết tiến độ phát triển.',
+      '2026: Nâng cao chất lượng kỹ thuật - Tối ưu hiệu năng & chi phí vận hành.',
+      'R&D: Nghiên cứu & tích hợp các module AI vào nền tảng cốt lõi.',
+      'Đề xuất: Đào tạo chuyên sâu về AI Marketing (MarTech) để nâng cao nghiệp vụ.'
     ]
   }
 ];
