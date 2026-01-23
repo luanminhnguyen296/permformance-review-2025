@@ -25,6 +25,7 @@ export const SLIDES: SlideContent[] = [
   {
     id: 1,
     title: 'PERFORMANCE REVIEW 2025',
+    // title: 'PERFORMANCE REVIEW 2025',
     subtitle: 'Nguyễn Minh Luân – Full-stack Developer',
     type: 'cover',
     content: [
@@ -169,7 +170,7 @@ export const SLIDES: SlideContent[] = [
   {
     id: 15,
     title: 'Kết luận & đề xuất',
-    type: 'standard',
+    type: 'grid',
     content: [
       '2025: Đảm bảo chất lượng sản phẩm & cam kết tiến độ phát triển.',
       '2026: Nâng cao chất lượng kỹ thuật - Tối ưu hiệu năng & chi phí vận hành.',

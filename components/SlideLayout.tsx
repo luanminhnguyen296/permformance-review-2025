@@ -9,7 +9,7 @@ import {
   Shield, Brain, Users, Layout, Rocket, Target, CheckCircle2,
   ChevronRight, ArrowRight, TrendingUp, Settings, MessageSquare, 
   Bell, FileText, Globe, MousePointer2, Plus,  Zap, Scale, Layers,Code2,Database,
-  Activity, Gauge, Workflow,Cpu,Server
+  Activity, Gauge, Workflow,Cpu,Server, Flag, GraduationCap, Star
 } from 'lucide-react';
 
 import { CONTRIBUTION_DATA, COLORS, SLIDES } from '../constants';
@@ -458,24 +458,27 @@ const SlideLayout: React.FC<SlideLayoutProps> = ({ slide }) => {
         );
 
       case 'grid':
-        if (slide.id === 2 || slide.id === 4) {
+        if (slide.id === 2 || slide.id === 4 || slide.id === 11 || slide.id === 12 || slide.id === 15) {
           return (
             <div className="flex flex-col md:flex-row gap-12 mt-12 items-center">
               <div className="w-full md:w-1/2 grid grid-cols-1 gap-4">
                 {slide.content.map((item, i) => (
                   <div key={i} className="glass-card p-6 rounded-2xl flex items-center gap-5 group hover:border-sky-500/50 transition-all">
                     <div className="p-4 bg-sky-500/10 rounded-2xl text-sky-400 group-hover:bg-[#004683] group-hover:text-white transition-all">
-                      {i === 0 ? <Target size={24} /> : i === 1 ? <Rocket size={24} /> : i === 2 ? <Shield size={24} /> : <Brain size={24} />}
+                      {i === 0 ? <Flag size={24} /> : i === 1 ? <TrendingUp size={24} /> : i === 2 ? <Cpu size={24} /> : <GraduationCap size={24} />}
                     </div>
                     <div className="flex items-center h-full"> 
-                      <h4 className="text-lg font-bold text-white">{item.split(' - ')[0]}</h4>
-                      {/* <p className="text-slate-400 leading-relaxed text-sm">{item.split(' - ')[1] || item}</p> */}
+                      <h4 className="text-lg font-bold text-white leading-snug">{item.split(' - ')[0]}</h4>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="w-full md:w-1/2 aspect-square">
-              {slide.id === 2 ? <CoreValuesMockup /> : <ContributionScopeMockup />}
+                {slide.id === 2 ? <CoreValuesMockup /> : 
+                 slide.id === 4 ? <ContributionScopeMockup /> : 
+                 slide.id === 11 ? <BusinessImpactMockup /> :
+                 slide.id === 12 ? <StrengthsMockup /> :
+                 <ConclusionMockup />}
               </div>
             </div>
           );
@@ -532,24 +535,24 @@ const SlideLayout: React.FC<SlideLayoutProps> = ({ slide }) => {
       </motion.div>
 
       {/* Slide Header */}
-      <motion.div variants={itemVariants} className="relative z-10 mb-0">
+      <motion.div variants={itemVariants} className={`relative z-10 mb-0 ${slide.type === 'cover' ? 'h-full' : ''}`}>
         {slide.type === 'cover' ? (
           <div className="flex flex-col h-full justify-center space-y-10 mt-10">
             <BrancherXLogo className="h-20 mb-4" />
-            <motion.div variants={containerVariants} className="space-y-4">
-               <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-6xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-100 to-sky-400 leading-none">
+            <motion.div variants={containerVariants} className="!my-auto flex-grow justify-center flex flex-col">
+               <motion.h1 variants={itemVariants} className="mb-10 text-4xl md:text-7xl lg:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-100 to-sky-400 leading-none" style={{opacity: 1,transform: 'none',letterSpacing: '-1px'}}>
                 {slide.title}
               </motion.h1>
-              <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold text-sky-400 opacity-90">
+              <motion.h4 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-sky-400 opacity-90 mt-2">
                 {slide.subtitle}
-              </motion.h2>
-            </motion.div>
-            <motion.div variants={containerVariants} className="flex flex-wrap gap-4 pt-10">
-              {slide.content.map((line, i) => (
-                <motion.div key={i} variants={itemVariants} className="px-6 py-3 rounded-xl bg-[#004683]/30 border border-sky-900/50 backdrop-blur-md text-sky-100 font-semibold text-lg shadow-lg">
-                  {line}
-                </motion.div>
-              ))}
+              </motion.h4>
+              <motion.div variants={containerVariants} className="flex flex-wrap gap-4 mt-6 mb-12">
+                {slide.content.map((line, i) => (
+                  <motion.div key={i} variants={itemVariants} className="px-6 py-3 rounded-xl bg-[#004683]/40 border border-sky-900/50 backdrop-blur-md text-sky-100 font-semibold text-lg shadow-lg">
+                    {line}
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
           </div>
         ) : (
@@ -851,5 +854,274 @@ const ContributionScopeMockup = () => {
   );
 };
 
+
+// Mockup minh họa cho Tác động kinh doanh (Slide 11) - Style Hub-spoke tương tự Slide 4
+const BusinessImpactMockup = () => {
+  return (
+    <div className="w-full h-full flex items-center justify-center relative">
+      {/* Background Glows */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-20">
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="w-80 h-80 bg-indigo-500 rounded-full blur-[120px]"
+        />
+      </div>
+      
+      <div className="relative flex items-center justify-center w-full h-full">
+        {/* Central Core */}
+        <motion.div 
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          className="z-20 w-44 h-44 rounded-[2.5rem] bg-gradient-to-b from-slate-800 to-slate-900 border-2 border-indigo-500/50 flex flex-col items-center justify-center shadow-[0_0_60px_rgba(99,102,241,0.3)]"
+        >
+           <div className="p-3 bg-indigo-500/10 rounded-2xl mb-2 text-indigo-400">
+            <TrendingUp size={40} className="drop-shadow-lg" />
+          </div>
+          <span className="text-[10px] font-black text-indigo-300 uppercase tracking-widest mb-1">Impact Core</span>
+          <span className="text-xl font-black text-white tracking-tight">GROWTH</span>
+          <div className="flex gap-1.5 mt-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse delay-100"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse delay-200"></div>
+          </div>
+        </motion.div>
+
+        {/* Outer Floating Icons */}
+        {[
+          { icon: <Rocket size={24} />, x: -260, y: -160, label: 'Market Speed', delay: 0, color: 'text-sky-400', border: 'border-sky-500/30' },
+          { icon: <Globe size={24} />, x: 260, y: -160, label: 'High Scalability', delay: 0.2, color: 'text-emerald-400', border: 'border-emerald-500/30' },
+          { icon: <Workflow size={24} />, x: -260, y: 160, label: 'Cost Optimized', delay: 0.4, color: 'text-amber-400', border: 'border-amber-500/30' },
+          { icon: <Brain size={24} />, x: 260, y: 160, label: 'AI Readiness', delay: 0.6, color: 'text-purple-400', border: 'border-purple-500/30' },
+        ].map((item, i) => (
+          <motion.div 
+            key={i} 
+            initial={{ scale: 0, x: 0, y: 0 }}
+            animate={{ 
+              scale: 1, 
+              x: item.x, 
+              y: item.y,
+            }}
+            transition={{ 
+              type: "spring", stiffness: 200, damping: 20, delay: item.delay,
+            }}
+            className="absolute left-1/2 top-1/2 -ml-9 -mt-9 z-30 flex flex-col items-center"
+          >
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: item.delay }}
+              className={`w-18 h-18 p-5 rounded-2xl bg-slate-900/90 border ${item.border} flex items-center justify-center ${item.color} shadow-2xl backdrop-blur-xl hover:scale-110 transition-transform cursor-default`}
+            >
+              {item.icon}
+            </motion.div>
+            <motion.div
+               animate={{ y: [0, -10, 0] }}
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: item.delay }} 
+               className="mt-3"
+            >
+                <span className="text-[11px] font-black text-slate-300 uppercase tracking-wide bg-slate-900/90 px-3 py-1 rounded-full border border-slate-700 shadow-lg">{item.label}</span>
+            </motion.div>
+          </motion.div>
+        ))}
+
+        {/* Connecting Orbital Rings */}
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute w-[30rem] h-[30rem] border border-indigo-500/10 rounded-full border-dashed"
+        />
+        <motion.div 
+          animate={{ rotate: -360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute w-[38rem] h-[38rem] border border-slate-700/30 rounded-full opacity-50"
+        />
+      </div>
+    </div>
+  );
+};
+
+// Mockup minh họa cho Điểm mạnh nổi bật (Slide 12)
+const StrengthsMockup = () => {
+  const nodes = [
+    { icon: <Code2 size={24} />, x: -160, y: -160, label: 'Clean Code', color: 'text-sky-400', border: 'border-sky-500' },
+    { icon: <Zap size={24} />, x: 160, y: -160, label: 'Adaptability', color: 'text-amber-400', border: 'border-amber-500' },
+    { icon: <Database size={24} />, x: -160, y: 160, label: 'Deep Insight', color: 'text-indigo-400', border: 'border-indigo-500' },
+    { icon: <Target size={24} />, x: 160, y: 160, label: 'Problem Solving', color: 'text-emerald-400', border: 'border-emerald-500' },
+  ];
+
+  return (
+    <div className="w-full h-full flex items-center justify-center relative">
+      <div className="absolute inset-0 flex items-center justify-center opacity-20">
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="w-96 h-96 border-[3px] border-emerald-500/20 rounded-full border-dashed"
+        />
+        <motion.div 
+          animate={{ rotate: -360 }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute w-72 h-72 border border-sky-500/30 rounded-full"
+        />
+      </div>
+
+      {/* Connecting Lines Layer - Behind everything */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible" viewBox="0 0 800 800">
+         <g transform="translate(400, 400)">
+            {nodes.map((node, i) => (
+               <motion.line
+                 key={i}
+                 x1="0" y1="0"
+                 x2={node.x} y2={node.y}
+                 stroke="#334155"
+                 strokeWidth="2"
+                 strokeDasharray="4,4"
+                 initial={{ pathLength: 0, opacity: 0 }}
+                 animate={{ pathLength: 1, opacity: 0.5 }}
+                 transition={{ delay: 1, duration: 1 }}
+               />
+            ))}
+         </g>
+      </svg>
+
+      <div className="relative z-10 flex items-center justify-center w-full h-full">
+         {/* Central Core */}
+         <motion.div 
+           initial={{ scale: 0 }}
+           animate={{ scale: 1 }}
+           transition={{ type: "spring", stiffness: 200, damping: 15 }}
+           className="z-30 w-44 h-44 bg-slate-900 border-4 border-emerald-500 rounded-[2.5rem] flex flex-col items-center justify-center shadow-[0_0_50px_rgba(16,185,129,0.3)]"
+         >
+            <Shield size={48} className="text-emerald-400 fill-emerald-500/10 mb-2" />
+            <span className="text-2xl font-black text-white tracking-tighter">MID-LEVEL</span>
+            <span className="text-sm font-bold text-emerald-500 uppercase tracking-[0.2em]">SOLID BASE</span>
+         </motion.div>
+
+         {/* Floating Skill Nodes */}
+         {nodes.map((item, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1, x: item.x, y: item.y }}
+              transition={{ delay: i * 0.1 + 0.5, type: "spring" }}
+              className="absolute z-20 flex items-center justify-center"
+            >
+               <div className={`w-18 h-18 rounded-2xl bg-slate-900 ${item.border} border-2 flex items-center justify-center ${item.color} shadow-2xl relative overflow-hidden group backdrop-blur-sm`}>
+                  <div className={`absolute inset-0 bg-current opacity-5 group-hover:opacity-20 transition-opacity`}></div>
+                  {item.icon}
+               </div>
+               
+               {/* Label - Absolute to not shift icon center */}
+               <div className="absolute top-[calc(100%+12px)] flex flex-col items-center">
+                  <span className="px-4 py-1.5 bg-slate-900/90 rounded-full border border-slate-700 text-[11px] font-black text-slate-200 uppercase tracking-wide whitespace-nowrap shadow-xl">
+                    {item.label}
+                  </span>
+               </div>
+            </motion.div>
+         ))}
+      </div>
+    </div>
+  );
+};
+
+// Mockup minh họa cho Kết luận & Đề xuất (Slide 15)
+const ConclusionMockup = () => {
+  const nodes = [
+    { icon: <CheckCircle2 size={24} />, x: -240, y: -160, label: 'Quality 2025', color: 'text-emerald-400', border: 'border-emerald-500/30', delay: 0 },
+    { icon: <Star size={24} />, x: 240, y: -160, label: 'Excellence 2026', color: 'text-sky-400', border: 'border-sky-500/30', delay: 0.2 },
+    { icon: <Brain size={24} />, x: -240, y: 160, label: 'AI Innovation', color: 'text-purple-400', border: 'border-purple-500/30', delay: 0.4 },
+    { icon: <GraduationCap size={24} />, x: 240, y: 160, label: 'Expert Training', color: 'text-amber-400', border: 'border-amber-500/30', delay: 0.6 },
+  ];
+
+  return (
+    <div className="w-full h-full relative flex items-center justify-center overflow-visible">
+      {/* Background Decor */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none z-0">
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="w-full h-full bg-sky-500 rounded-full blur-[120px]"
+        />
+      </div>
+      
+      {/* Connecting Lines */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible" viewBox="0 0 800 800">
+         <g transform="translate(400, 400)">
+            {nodes.map((node, i) => (
+               <motion.line
+                 key={i}
+                 x1="0" y1="0"
+                 x2={node.x} y2={node.y}
+                 stroke="#0ea5e9"
+                 strokeWidth="2"
+                 strokeDasharray="8,4"
+                 initial={{ pathLength: 0, opacity: 0 }}
+                 animate={{ pathLength: 1, opacity: 0.3 }}
+                 transition={{ delay: 0.8, duration: 1.5 }}
+               />
+            ))}
+         </g>
+      </svg>
+
+      {/* Centered Content Container */}
+      <div className="relative z-20 flex items-center justify-center w-full h-full">
+        {/* Central Core */}
+        <motion.div 
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          className="z-30 w-48 h-48 rounded-full bg-slate-900 border-2 border-sky-500/50 flex flex-col items-center justify-center shadow-[0_0_60px_rgba(14,165,233,0.3)] relative group shrink-0"
+        >
+           <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-[-8px] border-2 border-sky-500/20 rounded-full border-dashed"
+           />
+           <div className="p-4 bg-sky-500/10 rounded-full mb-2 text-sky-400 group-hover:bg-sky-500 group-hover:text-white transition-all duration-500">
+            <Target size={40} className="drop-shadow-lg font-bold" />
+          </div>
+          <span className="text-[10px] font-black text-sky-300 uppercase tracking-[0.3em] mb-1">Mission</span>
+          <span className="text-xl font-black text-white tracking-widest">VISION</span>
+        </motion.div>
+
+        {/* Satellites */}
+        {nodes.map((item, i) => (
+          <motion.div 
+            key={i} 
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1, x: item.x, y: item.y }}
+            transition={{ type: "spring", stiffness: 200, damping: 20, delay: item.delay }}
+            className="absolute z-20 flex items-center justify-center"
+          >
+            <motion.div 
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+              className={`w-18 h-18 p-5 rounded-2xl bg-slate-900 border ${item.border} flex items-center justify-center ${item.color} shadow-2xl backdrop-blur-xl group hover:border-sky-400 transition-colors pointer-events-none`}
+            >
+              <div className="absolute inset-0 bg-current opacity-5 rounded-2xl"></div>
+              {item.icon}
+            </motion.div>
+            <motion.div
+               animate={{ y: [0, -12, 0] }}
+               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }} 
+               className="absolute top-[calc(100%+12px)] pointer-events-none"
+            >
+                <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest bg-slate-900/90 px-4 py-1.5 rounded-full border border-slate-700 shadow-xl backdrop-blur-md whitespace-nowrap">
+                  {item.label}
+                </span>
+            </motion.div>
+          </motion.div>
+        ))}
+
+        {/* Decoration Ring */}
+        <motion.div 
+          animate={{ rotate: -360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute w-[36rem] h-[36rem] border border-slate-700/30 rounded-full opacity-50 border-dotted pointer-events-none"
+        />
+      </div>
+    </div>
+  );
+};
 
 export default SlideLayout;
